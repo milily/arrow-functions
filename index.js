@@ -107,8 +107,11 @@ const ordenesConReduce = () => {
 }
 
 
-const numeros = [1,2,3,4,5]
+/**
+ * Ejercicios para entender mejor el uso del método Reduce()
+ */
 
+const numeros = [1,2,3,4,5]
 const result = numeros.reduce((valorAnterior, valorActual) => {
     // Primera iteracion
     valorAnterior // 5
@@ -134,3 +137,12 @@ const result = numeros.reduce((valorAnterior, valorActual) => {
     const valorNuevo = valorAnterior + valorActual
     return valorNuevo;
 }, 5)
+
+const ejercicios = [1,2,2,1,4,5,7,10,10]
+const reduce = ejercicios.reduce((posanterior, posactual) => {
+    if(posanterior.includes(posactual)){
+        return posanterior.push(posiactual)
+    }
+    return posanterior
+
+},[])
