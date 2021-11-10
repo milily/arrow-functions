@@ -1,7 +1,9 @@
 /**
+ * Función que retorna un Array con las ordenes que solo contienen 'lechuga y palta'.
  * @function lechugaYPalta
- * @returns {Array} returns an array containing all the orders with 'lechuga y palta'
+ * @returns {Array} 
  */
+
 const lechugaYPalta = () => {
     const resultado = sandwichOrders.filter(sandwichOrder => 
         sandwichOrder.ingredients.includes('lechuga') && 
@@ -10,8 +12,15 @@ const lechugaYPalta = () => {
     return resultado
 }
 
-const encontrarOrdenPorId = idOrden => {
+/**
+ * Función que retorna un String con la información sobre la fecha, la proteína y
+ * el tipo de pan que eligió ese pedido buscado por número de 'id'.
+ * @function encontrarOrdenPorId
+ * @param {Number} idOrden 
+ * @returns {String} 
+ */
 
+const encontrarOrdenPorId = idOrden => {
     const filtrodeOrdenes = sandwichOrders.find(sandwichOrder => sandwichOrder.id === idOrden)
     if(filtrodeOrdenes){
         const{
@@ -22,43 +31,65 @@ const encontrarOrdenPorId = idOrden => {
     
         const respuesta1 = `la orden fue realizada el ${ordered}, la orden llevó ${protein} y ${bread}`
         return respuesta1
-        
     }
     
     const respuesta2 = `No se encontró la orden con id ${idOrden}`
     return respuesta2  
 }
 
+/**
+ * Función que retorna un True o un False si el número de orden('id) contiene pepinillos.
+ * @function ordenConPepinillos
+ * @param {Number} idOrden
+ * @returns {Boolean}
+ */
+
 const ordenConPepinillos = idOrden => {
-
     const filtrodeOrdenes = sandwichOrders.find(sandwichOrder => sandwichOrder.id === idOrden)
-
     if(filtrodeOrdenes){
+        return filtrodeOrdenes.ingredients.some(ingredient => ingredient === 'pepinillos')
+
+        // Solución alternativa
         // const filtro = filtrodeOrdenes.ingredients.includes('pepinillos')
         // return filtro
-        return filtrodeOrdenes.ingredients.some(ingredient => ingredient === 'pepinillos')
     }
 }
 
+/**
+ * Función que retorna un String con un mensaje informando cuántas órdenes se encontraron para
+ * la fecha entregada como párametro, ejemplo: '20-10-2020'.
+ * @function ordenPorDia
+ * @param {String} fecha
+ * @returns {String}
+ */
 
 const ordenPorDia = fecha => {
-
     const filtrodeOrdenes = sandwichOrders.filter(sandwichOrder => sandwichOrder.ordered === fecha)
     return `Se encontraron ${filtrodeOrdenes.length} para la fecha ${fecha}`
 }
 
-const ordenesConProteina = () =>{
+/**
+ * Función que retorna un array con todas las fechas de las órdenes que cumplan con tener 'not burger' 
+ * y 'cebolla caramelizada'.
+ * @function ordenesConProteina
+ * @returns {Array}
+ */
 
-    const filtroProteinaYcebolla = sandwichOrders.filter(sandwichOrder => 
+const ordenesConProteina = () =>{
+    const filtroProteinasYcebollas = sandwichOrders.filter(sandwichOrder => 
         sandwichOrder.protein.includes('not burger') &&
         sandwichOrder.ingredients.includes('cebolla caramelizada'))
 
-    return filtroProteinaYcebolla
+    return filtroProteinasYcebollas.map(filtroProteinaYcebolla => filtroProteinaYcebolla.ordered)
 }
 
+/**
+ * Función que retorna un objeto con la cantidad total de ordenes que corresponden a cada tipo
+ * de pan. 
+ * @function ordenesConReduce
+ * @returns {Object}
+ */
 const ordenesConReduce = () => {
-
-    const breads = ["bagette", "brioche", "pita", "marraqueta", "hallulla"]
     const contadorPanes = {
         hallulla: 0,
         marraqueta: 0,
@@ -68,28 +99,12 @@ const ordenesConReduce = () => {
     }
 
     const tipoDePanes = sandwichOrders.reduce((totalPan, sandwichOrder) => {
-
-        // totalPan = {
-        //   hallulla: 0
-        //   ...  
-        // }
-        console.log(sandwichOrder.bread)
         totalPan[sandwichOrder.bread] = totalPan[sandwichOrder.bread] + 1
         return totalPan
     },contadorPanes)
 
     return tipoDePanes
 }
-
-const ejercicio = [1,2,2,1,4,5,7,10,10]
-const arraynuevo = ejercicio.reduce((posianterior, posiactual)=>{
-    if(posianterior.includes(posiactual)){
-        return posianterior
-    }
-    posianterior.push(posiactual)
-    return posianterior
-},[])
-
 
 
 const numeros = [1,2,3,4,5]
