@@ -223,7 +223,7 @@ sandwichOrders = [
     {
       "id": 13,
       "picture": "https://picsum.photos/200",
-      "ordered": "01-10-2020",
+      "ordered": "27-10-2020",
       "protein": "hamburguesa cerdo",
       "sauces": [
         "aji pebre",

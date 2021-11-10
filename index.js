@@ -37,3 +37,9 @@ const ordenConPepinillos = idOrden => {
 }
 
 
+const ordenPorDia = fecha => {
+
+    const filtrodeOrdenes = sandwichOrders.filter(sandwichOrder => sandwichOrder.ordered === fecha)
+    return `Se encontraron ${filtrodeOrdenes.length} para la fecha ${fecha}`
+}
+
